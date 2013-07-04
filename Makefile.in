@@ -101,11 +101,10 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libgatt_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libgatt_la_OBJECTS = libgatt_la-att.lo libgatt_la-gatt.lo \
-	libgatt_la-gattrib.lo libgatt_la-utils.lo \
-	btio/libgatt_la-btio.lo lib/libgatt_la-uuid.lo \
-	lib/libgatt_la-hci.lo lib/libgatt_la-sdp.lo \
-	lib/libgatt_la-bluetooth.lo
+am_libgatt_la_OBJECTS = src/libgatt_la-att.lo src/libgatt_la-gatt.lo \
+	src/libgatt_la-gattrib.lo src/libgatt_la-btio.lo \
+	src/libgatt_la-uuid.lo src/libgatt_la-hci.lo \
+	src/libgatt_la-sdp.lo src/libgatt_la-bluetooth.lo
 libgatt_la_OBJECTS = $(am_libgatt_la_OBJECTS)
 libgatt_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libgatt_la_CFLAGS) \
@@ -275,8 +274,8 @@ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS} -I m4
 libgatt_la_CFLAGS = $(WARNING_CFLAGS) $(MISC_CFLAGS) @GLIB_CFLAGS@
 libgatt_la_LDFLAGS = @GLIB_LIBS@
 lib_LTLIBRARIES = libgatt.la
-libgatt_la_SOURCES = att.c gatt.c gattrib.c utils.c btio/btio.c lib/uuid.c lib/hci.c lib/sdp.c lib/bluetooth.c
-include_HEADERS = att.h btio/btio.h gatt.h gattrib.h utils.h
+libgatt_la_SOURCES = src/att.c src/gatt.c src/gattrib.c src/btio.c src/uuid.c src/hci.c src/sdp.c src/bluetooth.c
+include_HEADERS = src/att.h src/btio.h src/gatt.h src/gattrib.h
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -365,50 +364,47 @@ clean-libLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-btio/$(am__dirstamp):
-	@$(MKDIR_P) btio
-	@: > btio/$(am__dirstamp)
-btio/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) btio/$(DEPDIR)
-	@: > btio/$(DEPDIR)/$(am__dirstamp)
-btio/libgatt_la-btio.lo: btio/$(am__dirstamp) \
-	btio/$(DEPDIR)/$(am__dirstamp)
-lib/$(am__dirstamp):
-	@$(MKDIR_P) lib
-	@: > lib/$(am__dirstamp)
-lib/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) lib/$(DEPDIR)
-	@: > lib/$(DEPDIR)/$(am__dirstamp)
-lib/libgatt_la-uuid.lo: lib/$(am__dirstamp) \
-	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libgatt_la-hci.lo: lib/$(am__dirstamp) \
-	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libgatt_la-sdp.lo: lib/$(am__dirstamp) \
-	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libgatt_la-bluetooth.lo: lib/$(am__dirstamp) \
-	lib/$(DEPDIR)/$(am__dirstamp)
+src/$(am__dirstamp):
+	@$(MKDIR_P) src
+	@: > src/$(am__dirstamp)
+src/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/$(DEPDIR)
+	@: > src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-att.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-gatt.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-gattrib.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-btio.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-uuid.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-hci.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-sdp.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/libgatt_la-bluetooth.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 libgatt.la: $(libgatt_la_OBJECTS) $(libgatt_la_DEPENDENCIES) $(EXTRA_libgatt_la_DEPENDENCIES) 
 	$(libgatt_la_LINK) -rpath $(libdir) $(libgatt_la_OBJECTS) $(libgatt_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f btio/*.$(OBJEXT)
-	-rm -f btio/*.lo
-	-rm -f lib/*.$(OBJEXT)
-	-rm -f lib/*.lo
+	-rm -f src/*.$(OBJEXT)
+	-rm -f src/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgatt_la-att.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgatt_la-gatt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgatt_la-gattrib.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgatt_la-utils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@btio/$(DEPDIR)/libgatt_la-btio.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libgatt_la-bluetooth.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libgatt_la-hci.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libgatt_la-sdp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libgatt_la-uuid.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-att.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-bluetooth.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-btio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-gatt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-gattrib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-hci.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-sdp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libgatt_la-uuid.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -434,76 +430,68 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libgatt_la-att.lo: att.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT libgatt_la-att.lo -MD -MP -MF $(DEPDIR)/libgatt_la-att.Tpo -c -o libgatt_la-att.lo `test -f 'att.c' || echo '$(srcdir)/'`att.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libgatt_la-att.Tpo $(DEPDIR)/libgatt_la-att.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='att.c' object='libgatt_la-att.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-att.lo: src/att.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-att.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-att.Tpo -c -o src/libgatt_la-att.lo `test -f 'src/att.c' || echo '$(srcdir)/'`src/att.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-att.Tpo src/$(DEPDIR)/libgatt_la-att.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/att.c' object='src/libgatt_la-att.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o libgatt_la-att.lo `test -f 'att.c' || echo '$(srcdir)/'`att.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-att.lo `test -f 'src/att.c' || echo '$(srcdir)/'`src/att.c
 
-libgatt_la-gatt.lo: gatt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT libgatt_la-gatt.lo -MD -MP -MF $(DEPDIR)/libgatt_la-gatt.Tpo -c -o libgatt_la-gatt.lo `test -f 'gatt.c' || echo '$(srcdir)/'`gatt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libgatt_la-gatt.Tpo $(DEPDIR)/libgatt_la-gatt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gatt.c' object='libgatt_la-gatt.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-gatt.lo: src/gatt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-gatt.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-gatt.Tpo -c -o src/libgatt_la-gatt.lo `test -f 'src/gatt.c' || echo '$(srcdir)/'`src/gatt.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-gatt.Tpo src/$(DEPDIR)/libgatt_la-gatt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/gatt.c' object='src/libgatt_la-gatt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o libgatt_la-gatt.lo `test -f 'gatt.c' || echo '$(srcdir)/'`gatt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-gatt.lo `test -f 'src/gatt.c' || echo '$(srcdir)/'`src/gatt.c
 
-libgatt_la-gattrib.lo: gattrib.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT libgatt_la-gattrib.lo -MD -MP -MF $(DEPDIR)/libgatt_la-gattrib.Tpo -c -o libgatt_la-gattrib.lo `test -f 'gattrib.c' || echo '$(srcdir)/'`gattrib.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libgatt_la-gattrib.Tpo $(DEPDIR)/libgatt_la-gattrib.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gattrib.c' object='libgatt_la-gattrib.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-gattrib.lo: src/gattrib.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-gattrib.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-gattrib.Tpo -c -o src/libgatt_la-gattrib.lo `test -f 'src/gattrib.c' || echo '$(srcdir)/'`src/gattrib.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-gattrib.Tpo src/$(DEPDIR)/libgatt_la-gattrib.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/gattrib.c' object='src/libgatt_la-gattrib.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o libgatt_la-gattrib.lo `test -f 'gattrib.c' || echo '$(srcdir)/'`gattrib.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-gattrib.lo `test -f 'src/gattrib.c' || echo '$(srcdir)/'`src/gattrib.c
 
-libgatt_la-utils.lo: utils.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT libgatt_la-utils.lo -MD -MP -MF $(DEPDIR)/libgatt_la-utils.Tpo -c -o libgatt_la-utils.lo `test -f 'utils.c' || echo '$(srcdir)/'`utils.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libgatt_la-utils.Tpo $(DEPDIR)/libgatt_la-utils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='utils.c' object='libgatt_la-utils.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-btio.lo: src/btio.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-btio.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-btio.Tpo -c -o src/libgatt_la-btio.lo `test -f 'src/btio.c' || echo '$(srcdir)/'`src/btio.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-btio.Tpo src/$(DEPDIR)/libgatt_la-btio.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/btio.c' object='src/libgatt_la-btio.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o libgatt_la-utils.lo `test -f 'utils.c' || echo '$(srcdir)/'`utils.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-btio.lo `test -f 'src/btio.c' || echo '$(srcdir)/'`src/btio.c
 
-btio/libgatt_la-btio.lo: btio/btio.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT btio/libgatt_la-btio.lo -MD -MP -MF btio/$(DEPDIR)/libgatt_la-btio.Tpo -c -o btio/libgatt_la-btio.lo `test -f 'btio/btio.c' || echo '$(srcdir)/'`btio/btio.c
-@am__fastdepCC_TRUE@	$(am__mv) btio/$(DEPDIR)/libgatt_la-btio.Tpo btio/$(DEPDIR)/libgatt_la-btio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='btio/btio.c' object='btio/libgatt_la-btio.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-uuid.lo: src/uuid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-uuid.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-uuid.Tpo -c -o src/libgatt_la-uuid.lo `test -f 'src/uuid.c' || echo '$(srcdir)/'`src/uuid.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-uuid.Tpo src/$(DEPDIR)/libgatt_la-uuid.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/uuid.c' object='src/libgatt_la-uuid.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o btio/libgatt_la-btio.lo `test -f 'btio/btio.c' || echo '$(srcdir)/'`btio/btio.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-uuid.lo `test -f 'src/uuid.c' || echo '$(srcdir)/'`src/uuid.c
 
-lib/libgatt_la-uuid.lo: lib/uuid.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT lib/libgatt_la-uuid.lo -MD -MP -MF lib/$(DEPDIR)/libgatt_la-uuid.Tpo -c -o lib/libgatt_la-uuid.lo `test -f 'lib/uuid.c' || echo '$(srcdir)/'`lib/uuid.c
-@am__fastdepCC_TRUE@	$(am__mv) lib/$(DEPDIR)/libgatt_la-uuid.Tpo lib/$(DEPDIR)/libgatt_la-uuid.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lib/uuid.c' object='lib/libgatt_la-uuid.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-hci.lo: src/hci.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-hci.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-hci.Tpo -c -o src/libgatt_la-hci.lo `test -f 'src/hci.c' || echo '$(srcdir)/'`src/hci.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-hci.Tpo src/$(DEPDIR)/libgatt_la-hci.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/hci.c' object='src/libgatt_la-hci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o lib/libgatt_la-uuid.lo `test -f 'lib/uuid.c' || echo '$(srcdir)/'`lib/uuid.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-hci.lo `test -f 'src/hci.c' || echo '$(srcdir)/'`src/hci.c
 
-lib/libgatt_la-hci.lo: lib/hci.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT lib/libgatt_la-hci.lo -MD -MP -MF lib/$(DEPDIR)/libgatt_la-hci.Tpo -c -o lib/libgatt_la-hci.lo `test -f 'lib/hci.c' || echo '$(srcdir)/'`lib/hci.c
-@am__fastdepCC_TRUE@	$(am__mv) lib/$(DEPDIR)/libgatt_la-hci.Tpo lib/$(DEPDIR)/libgatt_la-hci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lib/hci.c' object='lib/libgatt_la-hci.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-sdp.lo: src/sdp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-sdp.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-sdp.Tpo -c -o src/libgatt_la-sdp.lo `test -f 'src/sdp.c' || echo '$(srcdir)/'`src/sdp.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-sdp.Tpo src/$(DEPDIR)/libgatt_la-sdp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sdp.c' object='src/libgatt_la-sdp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o lib/libgatt_la-hci.lo `test -f 'lib/hci.c' || echo '$(srcdir)/'`lib/hci.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-sdp.lo `test -f 'src/sdp.c' || echo '$(srcdir)/'`src/sdp.c
 
-lib/libgatt_la-sdp.lo: lib/sdp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT lib/libgatt_la-sdp.lo -MD -MP -MF lib/$(DEPDIR)/libgatt_la-sdp.Tpo -c -o lib/libgatt_la-sdp.lo `test -f 'lib/sdp.c' || echo '$(srcdir)/'`lib/sdp.c
-@am__fastdepCC_TRUE@	$(am__mv) lib/$(DEPDIR)/libgatt_la-sdp.Tpo lib/$(DEPDIR)/libgatt_la-sdp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lib/sdp.c' object='lib/libgatt_la-sdp.lo' libtool=yes @AMDEPBACKSLASH@
+src/libgatt_la-bluetooth.lo: src/bluetooth.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT src/libgatt_la-bluetooth.lo -MD -MP -MF src/$(DEPDIR)/libgatt_la-bluetooth.Tpo -c -o src/libgatt_la-bluetooth.lo `test -f 'src/bluetooth.c' || echo '$(srcdir)/'`src/bluetooth.c
+@am__fastdepCC_TRUE@	$(am__mv) src/$(DEPDIR)/libgatt_la-bluetooth.Tpo src/$(DEPDIR)/libgatt_la-bluetooth.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/bluetooth.c' object='src/libgatt_la-bluetooth.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o lib/libgatt_la-sdp.lo `test -f 'lib/sdp.c' || echo '$(srcdir)/'`lib/sdp.c
-
-lib/libgatt_la-bluetooth.lo: lib/bluetooth.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -MT lib/libgatt_la-bluetooth.lo -MD -MP -MF lib/$(DEPDIR)/libgatt_la-bluetooth.Tpo -c -o lib/libgatt_la-bluetooth.lo `test -f 'lib/bluetooth.c' || echo '$(srcdir)/'`lib/bluetooth.c
-@am__fastdepCC_TRUE@	$(am__mv) lib/$(DEPDIR)/libgatt_la-bluetooth.Tpo lib/$(DEPDIR)/libgatt_la-bluetooth.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='lib/bluetooth.c' object='lib/libgatt_la-bluetooth.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o lib/libgatt_la-bluetooth.lo `test -f 'lib/bluetooth.c' || echo '$(srcdir)/'`lib/bluetooth.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgatt_la_CFLAGS) $(CFLAGS) -c -o src/libgatt_la-bluetooth.lo `test -f 'src/bluetooth.c' || echo '$(srcdir)/'`src/bluetooth.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-	-rm -rf btio/.libs btio/_libs
-	-rm -rf lib/.libs lib/_libs
+	-rm -rf src/.libs src/_libs
 
 distclean-libtool:
 	-rm -f libtool config.lt
@@ -794,10 +782,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f btio/$(DEPDIR)/$(am__dirstamp)
-	-rm -f btio/$(am__dirstamp)
-	-rm -f lib/$(DEPDIR)/$(am__dirstamp)
-	-rm -f lib/$(am__dirstamp)
+	-rm -f src/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -809,7 +795,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR) btio/$(DEPDIR) lib/$(DEPDIR)
+	-rm -rf src/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -857,7 +843,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR) btio/$(DEPDIR) lib/$(DEPDIR)
+	-rm -rf src/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

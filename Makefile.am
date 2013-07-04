@@ -5,6 +5,6 @@ libgatt_la_CFLAGS = $(WARNING_CFLAGS) $(MISC_CFLAGS) @GLIB_CFLAGS@
 libgatt_la_LDFLAGS = @GLIB_LIBS@
 
 lib_LTLIBRARIES = libgatt.la
-libgatt_la_SOURCES = att.c gatt.c gattrib.c utils.c btio/btio.c lib/uuid.c lib/hci.c lib/sdp.c lib/bluetooth.c
+libgatt_la_SOURCES = src/att.c src/gatt.c src/gattrib.c src/btio.c src/uuid.c src/hci.c src/sdp.c src/bluetooth.c
 
-include_HEADERS = att.h btio/btio.h gatt.h gattrib.h utils.h
+include_HEADERS = src/att.h src/btio.h src/gatt.h src/gattrib.h
