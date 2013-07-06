@@ -1,4 +1,4 @@
-AC_INIT([libgatt], [0.1], [], [libgatt], [])
+AC_INIT([gatt], [0.1], [], [gatt], [])
 AC_PREREQ([2.59])
 AC_USE_SYSTEM_EXTENSIONS
 AM_INIT_AUTOMAKE([1.10 no-define])
