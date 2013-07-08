@@ -34,10 +34,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-#include <bluetooth/bluetooth.h>
-#include <bluetooth/l2cap.h>
-#include <bluetooth/rfcomm.h>
-#include <bluetooth/sco.h>
+#include "bluetooth.h"
+#include "l2cap.h"
+#include "rfcomm.h"
+#include "sco.h"
 
 #include <glib.h>
 

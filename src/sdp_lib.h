@@ -28,7 +28,7 @@
 #define __SDP_LIB_H
 
 #include <sys/socket.h>
-#include <bluetooth/bluetooth.h>
+#include "bluetooth.h"
 #include <bluetooth/hci.h>
 
 #ifdef __cplusplus

@@ -22,7 +22,7 @@
  *
  */
 
-#include <bluetooth/bluetooth.h>
+#include "bluetooth.h"
 #include <bluetooth/uuid.h>
 #include <glib.h>
 
