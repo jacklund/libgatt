@@ -23,7 +23,7 @@
  */
 
 #include "bluetooth.h"
-#include <bluetooth/uuid.h>
+#include "uuid.h"
 #include <glib.h>
 
 /* Attribute Protocol Opcodes */
