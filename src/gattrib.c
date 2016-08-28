@@ -544,7 +544,7 @@ guint g_attrib_send(GAttrib *attrib, guint id, const guint8 *pdu, guint16 len,
 	 * the sender. If the sender was already woken up by the second queue,
 	 * wake_up_sender will just return.
 	 */
-	if (g_queue_get_length(queue) == 1)
+	if (g_queue_get_length(queue) > 0)
 		wake_up_sender(attrib);
 
 	return c->id;
